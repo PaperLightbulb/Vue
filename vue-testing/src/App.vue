@@ -29,7 +29,7 @@
     })
   }
   function post () {
-    axios.post(url+"/p/", counter.value)
+    axios.post(url+"p/", counter.value)
     .then(function (response) {
     console.log(response);
   })
