@@ -22,14 +22,20 @@
   }
   function getSite () {
     axios.get(url).then((request) => {
-      setA("The temperature in Brooklyn Park is " 
-      + request.data['temp'] 
-      + "F and you have made " 
-      + request.data['calls']
-      + " calls so far.")
-    }).catch((error) => {
+      setA("The Value is " 
+      + request.data['temp']
+    )}).catch((error) => {
       console.log(error)
     })
+  }
+  function post () {
+    axios.post(url+"/p/", counter.value)
+    .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
   }
 </script>
 
@@ -52,6 +58,7 @@
     <button @click="incrementCounter">Counter: {{ counter }}</button>
     <button @click="flip">{{ flipText }}</button>
     <button @click="getSite">Get Site</button>
+    <button @click="post">Post</button>
   </div>
 </template>
 
@@ -65,6 +72,7 @@ div {
   justify-content: center;
 }
 button {
+  border: 0px;
   background-color: black;
   color: white;
   border-radius: 50vh;
