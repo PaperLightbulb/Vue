@@ -29,7 +29,13 @@
     })
   }
   function post () {
-    axios.post(url+"p/", counter.value)
+    const json = JSON.parse({ val : counter });
+    axios.post(url+"p/", json,{
+      headers: {
+        // Overwrite Axios's automatically set Content-Type
+        'Content-Type': 'application/json'
+      }
+    } )
     .then(function (response) {
     console.log(response);
   })
