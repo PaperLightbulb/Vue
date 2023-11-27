@@ -22,7 +22,11 @@
   }
   function getSite () {
     axios.get(url).then((request) => {
-      setA(request.data)
+      setA("The temperature in Brooklyn Park is " 
+      + request.data['temp'] 
+      + "F and you have made " 
+      + request.data['calls']
+      + " calls so far.")
     }).catch((error) => {
       console.log(error)
     })
