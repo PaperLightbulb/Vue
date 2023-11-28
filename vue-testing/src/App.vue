@@ -164,10 +164,6 @@
 
       </section>
 
-      <blockquote>
-        <p>Thanks for watching!</p>
-      </blockquote>
-
 
   </div>
 
