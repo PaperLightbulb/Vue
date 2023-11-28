@@ -168,6 +168,7 @@ canvas {
   left:0;
 }
 div {
+  overflow: hidden;
   z-index: 2;
   display: flex;
   flex-direction: column;
