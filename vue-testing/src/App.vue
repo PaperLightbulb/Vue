@@ -55,7 +55,6 @@
 
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( window.innerWidth, window.innerHeight );
-      camera.position.setZ(30);
 
       const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 )
       const material = new THREE.MeshStandardMaterial( { color: 0xFF6347 } );
@@ -98,10 +97,11 @@
         tourus.rotation.x += 0.01;
         tourus.rotation.y += 0.005;
         tourus.rotation.z += 0.01;
-
-        camera.position.y = t * -0.01;
-        camera.position.x = t * -0.0002;
-        camera.rotation.z = t * 0.0002;
+        if (t != 0){
+          camera.position.y = (t / document.body.getBoundingClientRect().height * 200) + 100;
+          camera.position.x = (t * -0.002) + (document.body.getBoundingClientRect().width / 100);
+          camera.rotation.z = t * 0.0002;
+        }
       }
 
       document.body.onscroll = moveCamera
@@ -133,8 +133,19 @@
     <button @click="flip">{{ flipText }}</button>
     <button @click="getSite">Get Site</button>
     <TextBlock></TextBlock>
-
-
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
+    <TextBlock></TextBlock>
   </div>
 
 </template>
