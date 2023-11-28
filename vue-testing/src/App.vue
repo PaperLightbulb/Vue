@@ -59,6 +59,9 @@
         renderer.setSize(window.innerWidth, window.innerHeight)
       })
 
+      camera.position.y = 100;
+      camera.position.x = document.body.getBoundingClientRect().width / 100;
+      camera.rotation.z = 0;
 
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( window.innerWidth, window.innerHeight );
