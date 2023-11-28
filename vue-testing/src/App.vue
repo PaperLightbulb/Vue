@@ -86,15 +86,27 @@
         scene.add(star)
 
       }
+
+      function moveCamera() {
+        const t = document.body.getBoundingClientRect().top;
+
+        tourus.rotation.x += 0.01;
+        tourus.rotation.y += 0.005;
+        tourus.rotation.z += 0.01;
+
+        camera.position.y = t * -0.01;
+        camera.position.x = t * -0.0002;
+        camera.rotation.z = t * 0.0002;
+      }
+
+      document.body.onscroll = moveCamera
       
       Array(300).fill().forEach(addStar)
 
       function animate() {
         requestAnimationFrame( animate );
 
-        tourus.rotation.x += 0.01;
-        tourus.rotation.y += 0.005;
-        tourus.rotation.z += 0.01;
+        
 
         controls.update()
 
@@ -115,12 +127,58 @@
     <button @click="incrementCounter">Counter: {{ counter }}</button>
     <button @click="flip">{{ flipText }}</button>
     <button @click="getSite">Get Site</button>
+      <section class="light">
+        <h2>👩🏽‍🚀 Projects</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+        <h2>🏆 Accomplishments</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+      </section>
+
+      <blockquote>
+        <p>The best way out is always through <br>-Robert Frost</p>
+      </blockquote>
+
+      <section class="left">
+        <h2>🌮 Work History</h2>
+
+        <h3>McDonalds</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <h3>Burger King</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <h3>Taco Bell</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+      </section>
+
+      <blockquote>
+        <p>Thanks for watching!</p>
+      </blockquote>
+
+
   </div>
 
 </template>
 
 <style>
+* {
+  color: aliceblue;
+}
 canvas {
+  z-index: 1;
   position: fixed;
   top:0;
   left:0;
@@ -128,12 +186,14 @@ canvas {
   height: 100vh;
 }
 div {
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
+  padding: 30%;
 }
 button {
   border: 0px;
