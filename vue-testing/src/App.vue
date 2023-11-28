@@ -46,10 +46,18 @@
       TextBlock
     },
     mounted () {
+
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
       const renderer = new THREE.WebGLRenderer({
         canvas: this.$refs.a
+      })
+
+      window.addEventListener("resize", function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        console.log(window.innerWidth)
+        renderer.setSize(window.innerWidth, window.innerHeight)
       })
 
 
@@ -155,12 +163,11 @@
   color: aliceblue;
 }
 canvas {
+  background-color: aqua;
   z-index: 1;
   position: fixed;
   top:0;
   left:0;
-  width: 100vw;
-  height: 100vh;
 }
 div {
   z-index: 2;
