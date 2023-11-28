@@ -7,7 +7,8 @@
   const pg = ref("")
   const a = ref("jdfksal")
 
-
+  
+  const url = 'https://flaskapitest.onrender.com/'; 
 
 
   function incrementCounter () {
@@ -28,47 +29,104 @@
       console.log(error)
     })
   }
-  function post () {
-    const json = JSON.parse({ val : counter });
-    axios.post(url+"p/", json,{
-      headers: {
-        // Overwrite Axios's automatically set Content-Type
-        'Content-Type': 'application/json'
-      }
-    } )
-    .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  }
 </script>
 
 <script>
-  import axios from 'axios'
-
-  const url = 'https://flaskapitest.onrender.com/'; 
-
+  import axios from 'axios';
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
   
 
+  //https://youtu.be/Q7AOvWpIVHU?t=409
   export default {
-    name: 'App'
+    name: 'App',
+    mounted () {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+      const renderer = new THREE.WebGLRenderer({
+        canvas: this.$refs.a
+      })
+
+
+      renderer.setPixelRatio( window.devicePixelRatio );
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      camera.position.setZ(30);
+
+      const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 )
+      const material = new THREE.MeshStandardMaterial( { color: 0xFF6347 } );
+      const tourus = new THREE.Mesh( geometry, material );
+
+      const pointLight = new THREE.PointLight(0xffffff, 100)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1)
+
+      const lightHelper = new THREE.PointLightHelper(pointLight)
+      const gridHelper = new THREE.GridHelper(200, 50)
+
+      const spaceTexture = new THREE.TextureLoader().load(
+        "./src/assets/space.jpg"
+      )
+      scene.background = spaceTexture
+
+      
+      pointLight.position.set(-5,10,10)
+      scene.add(pointLight, lightHelper, gridHelper)
+      scene.add(tourus)
+      scene.add(ambientLight)
+
+      const controls = new OrbitControls(camera, renderer.domElement)
+
+      function addStar() {
+        const geometry = new THREE.SphereGeometry(0.25,24,24)
+        const material = new THREE.MeshStandardMaterial({ color: 0xffffff})
+        const star = new THREE.Mesh( geometry, material )
+
+        const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 100 )) 
+
+        star.position.set(x, y, z)
+        scene.add(star)
+
+      }
+      
+      Array(300).fill().forEach(addStar)
+
+      function animate() {
+        requestAnimationFrame( animate );
+
+        tourus.rotation.x += 0.01;
+        tourus.rotation.y += 0.005;
+        tourus.rotation.z += 0.01;
+
+        controls.update()
+
+
+        renderer.render( scene, camera );
+      }
+
+      animate()
+    },
   }
 </script>
 
 <template>
+  <canvas ref="a"></canvas>
   <div>
     <h2>P:{{ pg }}</h2>
     <h3>{{ a }}</h3>
     <button @click="incrementCounter">Counter: {{ counter }}</button>
     <button @click="flip">{{ flipText }}</button>
     <button @click="getSite">Get Site</button>
-    <button @click="post">Post</button>
   </div>
+
 </template>
 
 <style>
+canvas {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+}
 div {
   display: flex;
   flex-direction: column;
