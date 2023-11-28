@@ -39,7 +39,6 @@
   import TextBlock from './components/TextBlock.vue'
   
 
-  //https://youtu.be/Q7AOvWpIVHU?t=409
   export default {
     name: 'App',
     components: {
@@ -140,10 +139,6 @@
     <button @click="incrementCounter">Counter: {{ counter }}</button>
     <button @click="flip">{{ flipText }}</button>
     <button @click="getSite">Get Site</button>
-    <TextBlock></TextBlock>
-    <TextBlock></TextBlock>
-    <TextBlock></TextBlock>
-    <TextBlock></TextBlock>
     <TextBlock></TextBlock>
     <TextBlock></TextBlock>
     <TextBlock></TextBlock>
