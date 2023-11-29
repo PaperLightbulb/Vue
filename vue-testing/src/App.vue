@@ -44,6 +44,9 @@
     components: {
       TextBlock
     },
+    props: {
+
+    },
     mounted () {
 
       const scene = new THREE.Scene();
@@ -160,7 +163,6 @@
 * {
   color: aliceblue;
   overflow-x: hidden;
-
 }
 canvas {
   background-color: aqua;
@@ -169,14 +171,29 @@ canvas {
   top:0;
   left:0;
 }
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
 #app {
-  overflow: hidden;
+  scrollbar-width: none;
+  overflow-x: hidden;
   z-index: 2;
   display: flex;
   flex-direction: column;
   width: 100vw;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
+
 }
 #chunck {
   overflow: hidden;
