@@ -136,7 +136,7 @@
 
 <template>
   <canvas ref="a"></canvas>
-  <div>
+  <div id="chunck">
     <h2>P:{{ pg }}</h2>
     <h3>{{ a }}</h3>
     <button @click="incrementCounter">Counter: {{ counter }}</button>
@@ -159,6 +159,7 @@
 <style>
 * {
   color: aliceblue;
+  overflow-x: hidden;
 }
 canvas {
   background-color: aqua;
@@ -167,7 +168,7 @@ canvas {
   top:0;
   left:0;
 }
-div {
+#app {
   overflow: hidden;
   z-index: 2;
   display: flex;
@@ -175,7 +176,16 @@ div {
   width: 100vw;
   align-items: center;
   justify-content: center;
-  padding: 30%;
+}
+#chunck {
+  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  padding: 20%;
 }
 button {
   border: 0px;
