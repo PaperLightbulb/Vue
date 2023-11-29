@@ -160,6 +160,7 @@
 * {
   color: aliceblue;
   overflow-x: hidden;
+
 }
 canvas {
   background-color: aqua;
